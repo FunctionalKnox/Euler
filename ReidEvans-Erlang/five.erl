@@ -52,15 +52,7 @@ solveSmartest(Numbers) ->
   Guess = lists:max(Numbers),
   Factors = allFactorsOfRange(Numbers),
   Primes = lists:filter(fun(X) -> contains(X, Factors) end, Numbers),
-  solveSmartest(Guess, Guess, Primes).
-
-solveSmartest(Guess, Increment, Numbers) ->
-    case lists:all(
-          fun(X) -> Guess rem X == 0 end,
-          Numbers) of
-        true -> Guess;
-        false -> solveSmartest(Guess + Increment, Increment, Numbers)
-    end.
+  solveSmarter(Guess, Guess, Primes).
 
 % > five:solve(lists:seq(1,20)).
 % 232792560
