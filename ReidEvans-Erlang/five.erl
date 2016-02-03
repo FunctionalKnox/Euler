@@ -15,6 +15,7 @@ solve(Guess, Numbers) ->
       false -> solve(Guess + 1, Numbers)
   end.
 
+% start with the max number in the list and increment by that number
 solveSmarter(Numbers) ->
   Guess = lists:max(Numbers),
   solveSmarter(Guess, Guess, Numbers).
