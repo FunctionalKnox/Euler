@@ -1,5 +1,5 @@
 -module(five).
--export([solve/1]).
+-export([solve/1,solveSmarter/1]).
 
 %  2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 %  What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
@@ -15,8 +15,21 @@ solve(Guess, Numbers) ->
       false -> solve(Guess + 1, Numbers)
   end.
 
+solveSmarter(Numbers) ->
+  Guess = lists:max(Numbers),
+  solveSmarter(Guess, Guess, Numbers).
+
+solveSmarter(Guess, Increment, Numbers) ->
+    case lists:all(
+          fun(X) -> Guess rem X == 0 end,
+          Numbers) of
+        true -> Guess;
+        false -> solveSmarter(Guess + Increment, Increment, Numbers)
+    end.
+
 % > c(five).
 % > five:solve(lists:seq(1,10)).
 % 2520
 % > five:solve(lists:seq(1,20)).
 % 232792560
+% 38 seconds
