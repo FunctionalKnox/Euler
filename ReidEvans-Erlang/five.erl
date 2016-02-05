@@ -40,11 +40,6 @@ allFactorsOfRange([], Acc) -> lists:usort(Acc);
 allFactorsOfRange([H|T], Acc) ->
   allFactorsOfRange(T, factors(H) ++ Acc).
 
-contains(X, List) ->
-  case lists:any(fun(Y) -> Y == X end, List) of
-    true -> false;
-    false -> true
-  end.
 
 % remove any items that are factors of another
 % item in the list and recurse over the smaller
@@ -52,7 +47,7 @@ contains(X, List) ->
 solveSmartest(Numbers) ->
   Guess = lists:max(Numbers),
   Factors = allFactorsOfRange(Numbers),
-  Primes = lists:filter(fun(X) -> contains(X, Factors) end, Numbers),
+  Primes = lists:filter(fun(X) -> not lists:member(X, Factors) end, Numbers),
   solveSmarter(Guess, Guess, Primes).
 
 % > five:solve(lists:seq(1,20)).
