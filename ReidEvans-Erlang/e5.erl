@@ -1,4 +1,4 @@
--module(five).
+-module(e5).
 -export([solve/1,solveSmarter/1,solveSmartest/1]).
 
 %  2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
