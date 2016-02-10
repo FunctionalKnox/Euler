@@ -6,8 +6,8 @@
 % What is the largest prime factor of the number 600851475143 ?
 factors(N) ->
   lists:filter(
-    fun (X) -> (X > 1) and (N rem X == 0) and (is_prime(X)) end,
-    lists:seq(1,N div 2)
+    fun (X) -> (X > 1) and (N rem X == 0) end,
+    lists:reverse(lists:seq(1,N div 2))
   ).
 
 is_prime(N) ->
@@ -16,13 +16,10 @@ is_prime(N) ->
     _ -> false
   end.
 
-
 largest_prime_factor(N) ->
   largest_prime_factor(
     N,
-    lists:reverse(
-      lists:seq(1,N div 2)
-    )
+    factors(N)
   ).
 
 largest_prime_factor(N, [H|T]) when N rem H == 0 ->
