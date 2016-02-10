@@ -10,7 +10,12 @@ let rec fibList  a b =
   else
     []
 
-//print list of even numbers from fibList
+//get list of even numbers from fibList
 let fibs = 1::2::(fibList 1 2)
           |> Seq.filter (fun i -> i % 2 = 0)
-          |> Seq.iter (fun x -> printf "%d " x)
+
+
+//add all numbers from fibs
+let sum = Seq.sum fibs
+//write output
+printf "%d" sum
