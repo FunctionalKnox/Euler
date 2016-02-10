@@ -1,4 +1,4 @@
--module(one).
+-module(e1).
 -export([solveRecursive/0,solve/0]).
 
 % If we list all the natural numbers below 10 that are multiples of 3

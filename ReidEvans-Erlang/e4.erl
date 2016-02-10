@@ -1,4 +1,4 @@
--module(four).
+-module(e4).
 -compile(export_all).
 
 % A palindromic number reads the same both ways.
