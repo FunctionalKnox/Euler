@@ -11,19 +11,28 @@ divisors(N) ->
     lists:seq(2, trunc(math:sqrt(N)))
     ).
 
+is_prime(N) ->
+  lists:all(
+    fun (X) -> N rem X /= 0 end,
+    divisors(N)
+  ).
 
+first(N, [H|T]) ->
+  case (N rem H == 0) and is_prime(H) of
+    true -> H;
+    false -> first(N, T)
+  end.
 
+largest_prime_factor(N) ->
+  first(
+    N,
+    lists:reverse(
+      divisors(N)
+    )
+  ).
 
+solve() -> largest_prime_factor(600851475143).
 
-%found on internet. added incrementer. crazy fast
-solve() ->
-  solve(600851475143, 2, 2, 0).
-
-solve(Number, Factor, Max, I) when Factor > Number ->
-  { Max, I };
-
-solve(Number, Factor, _, I) when (Number rem Factor) == 0 ->
-  solve(trunc(Number / Factor), Factor, Factor, I + 1);
-
-solve(Number, Factor, Max, I) ->
-  solve(Number, Factor + 1, Max, I + 1).
+% e3:solve().
+% 6857
+% 15 seconds
