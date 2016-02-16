@@ -11,19 +11,18 @@ let isPalindrome num =
 
 //isPalindrome 4004
 
-
-//getting error
 let palindromes l1 =
       l1
       |> Seq.filter (fun x -> isPalindrome x)
       |> Seq.max
 
 
-
+//generate list
 let li = seq {
   for i in 100..999 do
     for j in 100..999 do
       yield i*j
 }
 
+//check list for palindromes
 palindromes li
