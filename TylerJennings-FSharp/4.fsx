@@ -13,12 +13,17 @@ let isPalindrome num =
 
 
 //getting error
-let palindromes l1 n1 =
+let palindromes l1 =
       l1
-      |> List.map (fun x -> x * n1)
-      |> List.filter (fun x -> isPalindrome x)
+      |> Seq.filter (fun x -> isPalindrome x)
       |> Seq.max
 
 
-[100..999]
-|> List.map (fun x -> palindromes [100..999] x)
+
+let li = seq {
+  for i in 100..999 do
+    for j in 100..999 do
+      yield i*j
+}
+
+palindromes li
