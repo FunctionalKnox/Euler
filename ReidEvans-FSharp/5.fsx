@@ -21,7 +21,3 @@ let solve numbers =
     solveSmarter guess guess primes
 
 solve [1..20]
-
-
-//every day at 4 am
-//0 0 4 * * *
