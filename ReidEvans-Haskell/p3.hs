@@ -3,14 +3,10 @@
 
 isqrt = floor . sqrt . fromIntegral
 
-factors :: Integer -> [Integer]
-factors x =
-  filter (\y -> x `mod` y == 0) [2..(isqrt x)]
+isFactor x y = x `mod` y == 0
 
-isPrime :: Integer -> Bool
-isPrime x 
-  | x `mod` 2 == 0 = False
-  | otherwise = null (factors x)
+factors x = filter (isFactor x) [2..(isqrt x)]
 
-largestPrimeFactor :: Integer -> Integer
+isPrime = null . factors 
+
 largestPrimeFactor = last . filter isPrime . factors
