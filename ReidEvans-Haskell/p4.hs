@@ -1,3 +1,5 @@
+module Euler4 where
+
 {- A palindromic number reads the same both ways. 
    The largest palindrome made from the product of 
    two 2-digit numbers is 9009 = 91 × 99.
@@ -9,4 +11,3 @@ isPalindrome x = x == reverse x
 tables x = (*) <$> [1..x] <*> [1..x]
 
 solve = maximum . filter (isPalindrome . show) . tables
-

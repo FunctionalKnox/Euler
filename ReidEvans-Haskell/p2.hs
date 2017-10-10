@@ -1,12 +1,10 @@
+module Euler2 where
 {- By considering the terms in the Fibonacci sequence whose values do not exceed
  four million, find the sum of the even-valued terms. -}
 
-isEven x = x `mod` 2 == 0 
+fibs :: [Integer]
+fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
 
-fib max current next acc 
-  | current > max = acc
-  | otherwise = fib max next (current + next) (acc ++ [next])
-    
-solve x =
-  sum $ filter isEven $ fib x 1 2 [1]
+solve :: Integer -> Integer
+solve x = sum $ filter even $ takeWhile (<= x) fibs
 
